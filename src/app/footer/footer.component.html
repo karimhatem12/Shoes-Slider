@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row d-flex">
+    <div class="col-lg-3 my-md-0 my-3 col-12 justify-content-center d-flex">
+      <button type="button" class="btn d-flex align-items-center" data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop">
+        <i class="fa-solid fa-circle-play mx-2"></i>
+        <p class="m-0">Play Video</p>
+      </button>
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">{{Data.title}}</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <iframe height="315" class="w-100" src="https://www.youtube.com/watch?v=oSLeuvYxK_Y"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-lg-3 my-md-0 my-3 col-6 d-flex align-items-center justify-content-start justify-content-md-center px-md-0 px-3">
+      <i (click)="LeftClick()" class="fa-solid fa-arrow-left  pe-4"></i>
+      <i (click)="RightClick()" class="fa-solid fa-arrow-right"></i>
+    </div>
+    <div class="col-lg-3 my-md-0 my-3 col-6 d-flex align-items-center justify-content-end justify-content-md-center">
+      <p class="px-3 d-flex align-items-center m-0">1</p>
+      <div *ngFor="let FullData of FullData; let IndexOfdata = index">
+        <i (click)="ChangePage(IndexOfdata)" [ngClass]="IndexOfdata==count?'text-black':'text-secondary'"
+          class=" fa-solid fa-minus fs-3"></i>
+      </div>
+      <p class="px-3 d-flex align-items-center m-0">{{TotalNumber}}</p>
+    </div>
+    <div class="col-lg-3 my-md-0 my-3 col-12 d-flex justify-content-center align-items-center">
+      <button (click)="AddToCart()" type="button" class="btn text-white bg-black btn-lg fs-6 py-2 px-4 mx-2">ADD TO
+        CART</button>
+      <i [ngClass]="isFound?'fa-solid':'fa-regular'" (click)="MakeItFav()" class="fa-heart"></i>
+    </div>
+  </div>
+</div>

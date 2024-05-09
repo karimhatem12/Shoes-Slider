@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row my-3 m-md-0">
+    <div class="col-lg-3 align-self-center">
+      <h6>{{Data.category}} <i class="fa-solid fa-minus"></i> </h6>
+      <h4>{{Data.title}}</h4>
+      <p class="py-4">{{Data.description}}</p>
+      <div class="d-flex">
+        <div *ngFor="let image of images;let indexOfelement=index;"
+          class="position-relative animate__animated animate__flipInX z-3">
+          <div *ngIf="indexOfelement==NumberImage"
+            class="position-absolute overlay bg-dark opacity-25 top-0 start-0 bottom-0 end-0 mt-1"></div>
+          <img (click)="ChooseImage(indexOfelement)" class="w-100 " src='{{"../../assets/"+ image}}' alt="images">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6" id="Touch">
+      <img (touchstart)="Scroll()" *ngIf="status" [ngClass]="status ? 'animate__animated animate__bounce' :' '"
+        class="w-100 bg-transparent" id="userImg" src='{{"../../assets/"+ images[NumberImage]}}' alt="">
+      <img (touchstart)="Scroll()" *ngIf="status1" [ngClass]="status1 ? 'animate__animated animate__bounce' :' '"
+        class="w-100 bg-transparent" id="userImg" src='{{"../../assets/"+ images[NumberImage]}}' alt="">
+    </div>
+    <div class="col-lg-3 align-self-center z-3">
+      <div>
+        <p>Size</p>
+        <div class="d-flex">
+          <div *ngFor="let size of sizeItems;let indexOfelement=index">
+            <button [disabled]="!Data.size.includes(size)" (click)="ChooseSiza(indexOfelement)"
+              [ngClass]="indexOfelement==IndexOfTheSiza?'bg-black text-white border-secondary':'text-black border-dark'"
+              type=" button" style="width: 50px; height: 50px;"
+              class="border border-2 btn text-center rounded-circle m-2">{{size}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center py-3">
+        <p class="m-0">REVIEWS</p>
+        <ngb-rating class="text-warning fs-4" [max]="5" [(rate)]="Data.rate" [readonly]="true"></ngb-rating>
+      </div>
+      <div class="d-flex justify-content-between py-3">
+        <p>PRICE</p>
+        <p>{{Data.price|currency}}</p>
+      </div>
+      <div class="py-3">
+        <p>COLOUR</p><br>
+        <div class="d-flex justify-content-center">
+          <div *ngFor="let color of Data.colors;let indexOfelement=index;">
+            <button [ngClass]="indexOfelement==color1?'border-5 border-dark':' border-5'"
+              (click)="ChooseColor(color,indexOfelement)" [ngStyle]="{'background-color': color.hex}" type=" button"
+              class="btn rounded-circle m-2 p-3"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
